@@ -1,0 +1,122 @@
+[
+    {
+        "label": "Dierlamm A.",
+        "radius": 4,
+        "index": 0
+    },
+    {
+        "label": "Schneider M.",
+        "radius": 6,
+        "index": 1
+    },
+    {
+        "label": "Eckstein D.",
+        "radius": 3,
+        "index": 2
+    },
+    {
+        "label": "Kopmann A.",
+        "radius": 10,
+        "index": 3
+    },
+    {
+        "label": "Sander O.",
+        "radius": 10,
+        "index": 4
+    },
+    {
+        "label": "Fiederle M.",
+        "radius": 10,
+        "index": 5
+    },
+    {
+        "label": "Trunk U.",
+        "radius": 8,
+        "index": 6
+    },
+    {
+        "label": "Peric I.",
+        "radius": 11,
+        "index": 7
+    },
+    {
+        "label": "Blank T.",
+        "radius": 9,
+        "index": 8
+    },
+    {
+        "label": "Hansen K.",
+        "radius": 8,
+        "index": 9
+    },
+    {
+        "label": "Kaever P.",
+        "radius": 6,
+        "index": 10
+    },
+    {
+        "label": "Balzer M.",
+        "radius": 9,
+        "index": 11
+    },
+    {
+        "label": "Bussmann M.",
+        "radius": 11,
+        "index": 12
+    },
+    {
+        "label": "Chilingaryan S.",
+        "radius": 10,
+        "index": 13
+    },
+    {
+        "label": "Vogelgesang M.",
+        "radius": 9,
+        "index": 14
+    },
+    {
+        "label": "Pennicard D.",
+        "radius": 9,
+        "index": 15
+    },
+    {
+        "label": "Voss B.",
+        "radius": 10,
+        "index": 16
+    },
+    {
+        "label": "Schaefer O.",
+        "radius": 3,
+        "index": 17
+    },
+    {
+        "label": "Sefkow F.",
+        "radius": 6,
+        "index": 18
+    },
+    {
+        "label": "Kis M.",
+        "radius": 9,
+        "index": 19
+    },
+    {
+        "label": "Caselle M.",
+        "radius": 10,
+        "index": 20
+    },
+    {
+        "label": "Rota L.",
+        "radius": 8,
+        "index": 21
+    },
+    {
+        "label": "Wunderer C.",
+        "radius": 8,
+        "index": 22
+    },
+    {
+        "label": "Mussgiller A.",
+        "radius": 3,
+        "index": 23
+    }
+]

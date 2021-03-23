@@ -1,0 +1,989 @@
+
+/*
+Fixes the spaces between two text blocks being too wide
+ */
+p{
+    margin-bottom: 0px;
+}
+
+
+
+div.widget-foot>div>div.textwidget>p{
+    font-size: 12px;
+}
+
+
+div#search-4 {
+    display: none;
+}
+
+
+/*
+THE BODY
+
+CHANGELOG
+
+Changed 07.05.2018
+Removed the overflow:hidden from the body and moved it to a directive, that also includes the whole html class.
+Additionally added a rule that the body and html should only use 100% of the width available to them
+ */
+body {
+    font-family: corporate-regular, 'Open Sans', sans-serif;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* HEADER */
+header {background:rgb(0, 90, 160);font-family: 'Oswald', sans-serif;}
+header span.tagline{color: rgb(240, 120, 30);}
+
+nav {
+    background:rgb(0, 90, 160);
+    line-height: 1.4em;
+}
+/* rgb(140, 180, 35) */
+
+/*
+This is the classic helmholtz font with the cornered edges of the letters
+Changed 02.05.2018
+Moved the font files into the "fonts" folder of the project, to gain more structure in the project
+*/
+@font-face {
+    font-family: Hermann-Bold;
+    src:    url('../fonts/Hermann-Bold.woff2') format('woff2')
+}
+
+/*
+This font is used by the helmholtz main website as the regular font across all pages
+Changed 02.05.2018
+Moved the font files into the "fonts" folder of the project, to gain more structure in the project
+*/
+@font-face {
+    font-family: corporate-regular;
+    src: url('../fonts/corporate_s_regular.woff') format('woff');
+}
+
+/*
+This is the sans serif font used for the letters of the MTDTS logo
+Changed 02.05.2018
+Moved the font files into the "fonts" folder of the project, to gain more structure in the project
+*/
+@font-face {
+    font-family: Anton;
+    src: url('../fonts/Anton-Regular.ttf');
+}
+
+.helmholtz-bar {
+    margin: 0;
+    margin-top: -5px;
+    height: 120px;
+    background-color: white;
+}
+
+.helmholtz-bar-inner {
+    position: relative;
+    float: right;
+    top: 95px;
+    height: 25px;
+    width: 45%;
+    background-color: rgb(0, 90, 160);
+}
+
+.helmholtz-img-container {
+    position: relative;
+    top: 25px;
+    left: 60%;
+    margin-right: 30px;
+    height: 8px;
+    width: 300px;
+}
+
+/* THE CONTAINER FOR THE LOGO
+Pulls the actual logo container upwards, so that is slightly overlaps with the upper blue edge */
+div.col-sm-6.col-sm-pull-6 {
+    margin-top: -91px;
+}
+
+/* THE HELMHOLTZ WATERMARK */
+img.helmholtz-img {
+    height: 44px;
+    width: auto;
+}
+
+/* IMAGES ABOVE POSTS
+These are the images, displayed above the posts, this code fixes them to have the same width as the container, in wich
+they are placed, which is the post page
+ */
+img.wp-post-image{
+    width: 100%;
+}
+
+table{
+    border: 1px solid;
+}
+td {
+    border-top: 0px;
+    border-style: none;
+}
+td:first-child{
+    border: 0 none;
+}
+td:last-child{
+    border:0 none;
+}
+
+
+.helmholtz-bar-triangle {
+    position: relative;
+    float: right;
+    top: 95px;
+    width: 0;
+    height: 0;
+    border-bottom: 25px solid rgb(0, 90, 160);
+    border-left: 25px solid transparent;
+}
+
+
+/* NAVIGATION BAR */
+/*
+Originally the navbar was located in the header and streched essentially over the whole screen, that width is being
+decreased to fit the search widget or more general the additional widget area into the this header row
+ */
+nav#navbar {
+    width: 810px;
+    /* navbar and widget container fit into the same wrapper, the one floats to the left, the other to the right*/
+    position: relative;
+    float: left;
+}
+
+/*
+The navbar color was originally black just as the rest of the header of the venture theme. But since it is a separate
+entity from the upper wor, which contains the logo, the color has to be set independently
+ */
+nav {
+    background:rgb(0, 90, 160);
+    line-height: 1.4em;
+}
+
+.navbar-default . navbar-nav>li.active a,.fallback_cb>ul>li.current_page_item>a {border-bottom: 4px solid rgb(240, 120, 30);}
+.navbar-default .navbar-nav>li>a:hover,.fallback_cb>ul>li>a:hover {color: #fff;border-bottom: 4px solid rgb(240, 120, 30);}
+/* overriding the properties of the main menu */
+.navbar-default .navbar-nav>li>a,.fallback_cb>ul>li>a {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    margin-right: 30px;
+    border-bottom: 5px solid transparent;
+    color: #fff!important;
+    font-family: Hermann-Bold, sans-serif;
+    -webkit-transition: all ease .2s;
+    -moz-transition: all ease .2s;
+    transition: all ease .2s; }
+
+/* removing the social bar, right next to the Logo */
+div.social-icons>a {
+    opacity: 0;
+}
+
+/* THE MAIN LOGO ON TOP */
+
+/* A wrapper for all the logo elements, which is placed inside the logo container of the theme */
+div.logo-wrapper {
+    height: 140px;
+    padding: 5px;
+    width: 400px;
+    /* background-color: white; */
+    font-family: Arial, sans-serif;
+
+}
+
+/* The container of the two big letters of the logo
+ background color of the structure of matters field and fixed quadratic size*/
+div.logo-letter-wrapper {
+    background-color: rgb(240, 120, 30);
+    position: relative;
+    float: left;
+
+    width: 130px;
+    height: 130px;
+
+}
+
+/* The actual text inside the orange boxes
+Centering the text horizontally and vertically */
+div.logo-letter-wrapper>p {
+    color: white;
+    position: absolute;
+
+    font-size: 110px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* The wrapper of the second big letter specifically */
+div#logo-second-letter-wrapper {
+    /* A little space between the two boxes */
+    margin-left: 15px;
+}
+
+/* The wrapper for the vertical text */
+div.logo-dts-wrapper {
+    margin-left: 12px;
+    position: relative;
+    float: left;
+
+    height:130px;
+    width: 60px;
+
+    /* actually rotating to be vertical */
+    transform: rotate(-90deg);
+}
+
+div.logo-dts-wrapper>p {
+    color: rgb(0, 90, 160);
+
+    position: absolute;
+    font-size: 60px;
+    letter-spacing: 5px;
+
+    /* Centering the actual text inside the wrapper horizontally and vertically */
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+div.logo-dts-wrapper>p>span {
+    color: white;
+}
+
+/* The little orange strip after the vertical text */
+div.after-logo-box {
+    margin-left: 12px;
+
+    background-color: rgb(240, 120, 30);
+
+    position: relative;
+    float: left;
+
+    height: 130px;
+    width: 25px;
+}
+
+
+/* THE SMALL ICON, that gets displayed in the main menu, when the page gets scrolled down */
+
+li.icon-wrapper {
+    margin-left: -140px;
+}
+
+div.logo-wrapper-small {
+    margin-top: 10px;
+    margin-right: 20px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    float: left;
+
+    margin-bottom: -10px;
+}
+
+div.logo-letter-wrapper-small {
+    background-color: rgb(240, 120, 30);
+    position: relative;
+    float: left;
+
+    width: 40px;
+    height: 40px;
+
+}
+
+div.logo-letter-wrapper-small>p {
+    color: white;
+    position: absolute;
+
+    font-size: 30px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div#logo-second-letter-wrapper-small {
+    margin-left: 5px;
+}
+
+div.logo-dts-wrapper-small {
+    margin-left: 8px;
+    position: relative;
+    float: left;
+
+    height:40px;
+    width: 10px;
+
+    transform: rotate(-90deg);
+}
+
+div.logo-dts-wrapper-small>p {
+    color: white;
+
+    position: absolute;
+    font-size: 15px;
+    letter-spacing: 2px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+div.logo-dts-wrapper>p>span {
+    color: white;
+}
+
+div.after-logo-box-small {
+    margin-left: 8px;
+
+    background-color: rgb(240, 120, 30);
+
+    position: relative;
+    float: left;
+    bottom: 0px;
+
+    height: 40px;
+    width: 5px;
+}
+
+
+
+
+div.container {
+    width: 1180px;
+}
+
+/*
+Added 01.03.2018
+Using the background scheme from the original helmholtz.de website, which uses a grey dots, that increase in opacity
+as the page goes further down.
+To save space, the dots image only contains a single column and thus has to be repeated over the whole background
+along the x axis
+ */
+div.sub-background {
+    background-image: url("../img/bg_dots.png");
+    background-repeat: repeat-x;
+    /* Changing the width of the the top margin between the navigation bar and the actual content container */
+    padding-top: 30px;
+}
+
+/*
+Added 01.03.2018
+The subpage banner is a banner above the main content container, where the background picture can be seen through in
+the main theme, which is not needed here
+ */
+div#subpage-banner {
+    display: none;
+}
+
+div.sidebar-wrap>div.widget {
+    background-color: white;
+    margin-bottom: 25px;
+    border-bottom: 0px;
+}
+
+div.sidebar-wrap {
+    background-color: rgba(0,0,0,0);
+    /*
+    background-image: url('img/bg_dots.png');
+    background-repeat: repeat-x;
+    background-position: 0.5px -62px;
+    background-color: #e8eaea;
+    */
+}
+
+
+
+/*
+CAROUSEL
+ */
+.carousel-control.left {
+    text-shadow: none;
+    background-image: none;
+    vertical-align: middle;
+}
+
+.carousel-control.right {
+    text-shadow: none;
+    background-image: none;
+    vertical-align: middle;
+}
+
+/*
+Changed 22.04.2018
+Changed the linear gradient design of the carousel caption at the bottom of the pictures to be one single background
+color in the helmholtz color with a little opacity
+*/
+div.carousel-caption{
+    font-family: Oswald, sans-serif;
+    font-size: 24px;
+    color: white;
+    text-shadow: none;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    background: rgba(0, 90, 160, 0.7);
+    position: absolute;
+}
+
+.navbar-default .navbar-nav > li.active a, .fallback_cb > ul > li.current_page_item > a{border-color: rgb(240,120,30)}
+
+.page-title {
+    color: rgb(0, 90, 160);
+    padding-bottom: 10px;
+}
+
+div.col-sm-6.col-sm-push-6 {
+    padding-top: 10px;
+}
+div.col-sm-12 {
+    display: flex;
+    flex-direction: row;
+}
+div.col-sm-12>div {
+    margin-top: 35px;
+    width: 360px;
+    position: relative;
+    float: left;
+}
+
+/*
+Overall setting a edged and slim design for the search bar. The search bar is also stretched to almost the whole length
+of the wrapper div, since the search button is removed
+ */
+.search-wrap{text-align:center;}
+.search-wrap #s{padding:4px;outline:none;border:none;margin:0px;border:1px solid#e8eaea;position:relative;width: 90%}
+
+/*
+BUTTONS
+ */
+
+.search-wrap #searchsubmit, a.btn-primary{
+    font-family: 'Oswald', sans-serif;
+    background: rgb(240, 120, 30);
+    padding: 5px 20px;
+    font-size: 18px;
+    text-transform: none;
+    color: #ffffff;
+    border: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    display: inline-block;
+}
+
+/* Added 10.07.2018 */
+.button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Added 10.07.2018 */
+.button-container>div {
+    margin-right: 10px;
+}
+
+/*
+This is 'search' button, that is usually beside the search bar, but since it is not needed it will not be displayed.
+Still keeping it in the button style though, eventually want to use it somewhere else
+ */
+.search-wrap #searchsubmit{
+    display: None;
+    position: relative;
+    top: -1px;
+    margin-top:20px;
+    margin:0px;
+}
+.search-wrap #searchsubmit:hover, a.btn-primary:hover{background: rgb(221, 97, 2);}
+
+a.btn-primary{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 5px;
+    border: none;
+}
+
+
+/*
+THE POST LAYOUT
+ */
+
+/*
+Added 03.June 2018
+The container, where all the authors for a given post are listed. Increasing the margin to the title and making the
+text more subtle.
+ */
+div.scopus-publication-authors {
+    margin-bottom: 4px;
+    font-size: 90%;
+    color: #2F2F2F;
+}
+
+/*
+Added 11.06.2018
+The container, that contains the string for the journal of a publication
+ */
+div.scopus-publication-journal {
+    margin-bottom: 4px;
+    font-size: 90%;
+    color: black;
+}
+
+div.scopus-publication-journal em {
+    color: #2F2F2F;
+}
+
+/*
+Added 03.June 2018
+The container, that contains the "get it" button for the publications.
+ */
+div.scopus-link-container, div.kitopen-link-container {
+    margin-top: 4px;
+}
+
+/*
+Added 10.07.2018
+Colors the KIT Link in the KIT Color
+ */
+div.kitopen-link-container > a.btn-primary {
+    background-color: rgba(0, 150, 130, 0.85);
+}
+div.kitopen-link-container > a.btn-primary:hover {
+    background-color: rgba(0, 150, 130, 1);
+}
+
+div.category-header {
+    background-color: white;
+    vertical-align: middle;
+    padding: 10px;
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+/*
+Added 02.April 2018
+Removing the display of the author, that posted a comment on a wordpress by style
+ */
+div.comment-author{
+    display: none;
+}
+/*
+Added 10.April 2018
+Removing the display of the comment meta data, which means the date and the time, because it is redundant. The comment
+content about the citing publication already contains the date, when the publication was published and this date is
+also taken as the publishing date of the comment.
+ */
+div.comment-metadata {
+    display: none;
+}
+
+
+/*
+Added 15.12.2019
+The tags were looking a little bit weird so crammed together so now they have a little bit more spacing
+ */
+div.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+span.tag {
+    margin-bottom: 5px;
+}
+
+div.tags span.tag a:hover {
+    background-color: rgb(240, 120, 30);
+}
+
+/*
+Added 10.April 2018
+The style layout for the links, that link to the previous/next publication in a set of wordpress posts
+Using float to align them in a single line.
+The margin is needed, because that wont work with the container due to some weird glitch
+
+Changed 10.April 2019
+Had to change the selectors for the two links, so that they only use the upper container and selector magic, because
+the php code had to be changed in a way, that does not allow the links to have custom classes or ids
+*/
+.navigation>a { margin-top: 10px; margin-bottom: 15px; }
+.navigation a:first-of-type { float: left; }
+.navigation a:last-of-type { float: right; }
+
+div.archive-singular-wrap {
+    overflow: auto;
+}
+
+div.navigation {
+    width: 100%;
+}
+
+/*
+This is the main header navbar.
+Changed 03.10.2019
+Somehow the flex direction got messed up, in the way that the default was column, now we have to set it as row manually
+ */
+#menu-main {
+    width: 620px;
+    flex-direction: row;
+}
+
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* THE MEDIA QUERIES */
+
+/*
+Added 24.04.2018
+This is the CSS style rules being applied once the media reaches a certain smallest size, which induces the mobile
+view
+
+Changed 18.06.2018
+
+Lowered the font size of the page title and the menu items of the main navigational menu, decreased the borders of the
+page (There I realized, that I have to change something in the Javascript as well)
+
+ */
+@media (max-width:1175px) and (min-width:768px) {
+    /* So that the triangle does not overlap into the logo*/
+    .helmholtz-bar-inner { width: 15%; }
+    /* So that the drop down menu is not scrollable */
+    ul#menu-main { width: 95%; }
+    /*
+    Changed 18.06.2018
+
+    Changed the font size from 12 px to 17 px and added a line height argument to 1.4, which
+    moves the lines a little bit together in contrast to how it was before
+     */
+    body { padding-top: 0px; font-size: 17px; line-height: 1.4}
+    /* Fixes the button being out of screen and also moves the button next to the logo */
+    nav#navbar { width: 100%; margin-top: -40px; }
+    .logo-wrapper { margin-left: 10px; }
+    /* Makes the nav bar not sticky anymore, but moves the nav bar under the logo and not above it */
+    .primary-nav { padding-left: 10px; position: static; }
+    .col-sm-push-6 { display: none }
+    .navbar-brand {
+        display: none;
+    }
+    div.container {
+        margin: 0px auto;
+        padding: 0 0px;
+
+    }
+    button.navbar-toggle {
+        float: right;
+        border: 0px;
+    }
+    #page {
+        margin-top: 0px;
+        padding: 0 10px;
+    }
+    div#head {
+        margin-top: 0px;
+        padding: 0px;
+    }
+
+    header {
+        display: inherit;
+        height: 170px;
+    }
+
+    div.logo-wrapper {
+        display: none;
+    }
+
+    div.carousel-caption {
+        font-size: 14px;
+    }
+
+    /*
+    div.sub-background {
+        padding-top: 0px;
+    }
+     */
+
+    div.row>div.col-sm-8 {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    div.row {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    /*
+    Added 18.06.2018
+
+    Changed the padding on the sides of the content div from 25px to 10px, because the border was too big and space
+    consuming on mobile phones.
+     */
+    div.archive-singular-wrap>div {
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+
+    /*
+    Added 18.06.2018
+
+    Changed the font size of the page title to 26px, as it was too big before in relation to the font size fo the
+    standard text.
+     */
+    h1.page-title {
+        font-size: 26px;
+        margin-top: 8px;
+    }
+
+    /*
+    Added 18.06.2018
+
+    Changed the font size of the menu items of the main navigational menu. They were to big in proportion to the rest
+    of the text.
+     */
+    .navbar-default .navbar-nav>li>a,.fallback_cb>ul>li>a {
+        font-size: 16px;
+        margin-bottom: 8px;
+        margin-top: 2px;
+    }
+
+    /*
+    Added 26.06.2018
+
+    Changed the height of the image carousel in mobile mode to match the generally smaller images and smaller font
+     */
+    div.carousel-caption {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: 45px;
+    }
+
+    /*
+    Added 27.06.2018
+
+    Added a search widget to the primary sidebar, but it is only supposed to be visible, when in mobile mode, that is
+    when the search bar in the header disappears.
+     */
+    div#search-4 {
+        display: block;
+    }
+    /*
+    input#searchsubmit {
+        display: none !important;
+    }
+    */
+}
+
+@media (max-width:767px) and (min-width: 10px){
+    div.container {
+        width: 100%;
+    }
+
+    /* A wrapper for all the logo elements, which is placed inside the logo container of the theme */
+    div.logo-wrapper {
+        height: 80px;
+        padding: 5px;
+        width: 300px;
+        /* background-color: white; */
+        font-family: Arial, sans-serif;
+
+    }
+
+    nav#navbar {
+        width: 100%;
+    }
+
+    ul#menu-main {
+        flex-direction: column;
+    }
+
+    /* The container of the two big letters of the logo
+     background color of the structure of matters field and fixed quadratic size*/
+    div.logo-letter-wrapper {
+        background-color: rgb(240, 120, 30);
+        position: relative;
+        float: left;
+
+        width: 70px;
+        height: 70px;
+
+    }
+
+    /* The actual text inside the orange boxes
+    Centering the text horizontally and vertically */
+    div.logo-letter-wrapper>p {
+        color: white;
+        position: absolute;
+
+        font-size: 50px;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* The wrapper of the second big letter specifically */
+    div#logo-second-letter-wrapper {
+        /* A little space between the two boxes */
+        margin-left: 10px;
+    }
+
+    /* The wrapper for the vertical text */
+    div.logo-dts-wrapper {
+        margin-left: 8px;
+        position: relative;
+        float: left;
+
+        height:60px;
+        width: 25px;
+
+        /* actually rotating to be vertical */
+        transform: rotate(-90deg);
+    }
+
+    div.logo-dts-wrapper>p {
+        color: rgb(0, 90, 160);
+
+        position: absolute;
+        font-size: 30px;
+        letter-spacing: 5px;
+
+        /* Centering the actual text inside the wrapper horizontally and vertically */
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+    }
+
+    div.logo-dts-wrapper>p>span {
+        color: white;
+    }
+
+    /* The little orange strip after the vertical text */
+    div.after-logo-box {
+        margin-left: 8px;
+
+        background-color: rgb(240, 120, 30);
+
+        position: relative;
+        float: left;
+
+        height: 70px;
+        width: 15px;
+    }
+    .col-sm-push-6 { height: 45px; display: inherit}
+    .helmholtz-bar { height:80px }
+    .helmholtz-bar-inner {
+        position: relative;
+        float: right;
+        top: 70px;
+        height: 25px;
+        width: 20%;
+        background-color: rgb(0, 90, 160);
+    }
+    .helmholtz-bar-triangle {
+        position: relative;
+        float: right;
+        top: 70px;
+        width: 0;
+        height: 0;
+        border-bottom: 25px solid rgb(0, 90, 160);
+        border-left: 25px solid transparent;
+    }
+
+    /*
+    CHANGELOG
+
+    Added 07.05.2018
+    This fixes the logo wrapper in the mobile version of the website to go beyond the borders of the available screen
+    width, cause a overflow and therefor an unwanted scroll-ability in the horizontal direction.
+    */
+    div.logo-wrapper {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    div.row>div.col-sm-8 {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    div.row {
+        width: 100%;
+        margin-left: 0px;
+    }
+}
+
+
+.frontpage-banner{padding:0px 0;}
+
+
+/**
+THE CONTACT SHORTCODE
+
+The html added when using the contact shortcode in wordpress
+If given a picture, the picture and the contact text will be aligned next to each other with the contact text being
+aligned to the bottom of the picture.
+Both the contact info and the picture wrapper will be 50% of the parent div. The image will be smaller than its wrapper
+and be aligned in the horizontal center.
+
+CHANGELOG
+Added 02.05.2018
+ */
+
+.contact-wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.contact-wrapper:after {
+    content: '';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+
+.contact-image {
+    float: left;
+    width: 50%;
+}
+
+.contact-text {
+    align-self: flex-end;
+    vertical-align: bottom;
+    width: 50%;
+    float: left;
+    bottom: 0;
+}
+
+.contact-image img {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
