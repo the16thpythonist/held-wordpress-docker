@@ -23,6 +23,8 @@ COPY ./run.py "$WP_FOLDER/run.py"
 COPY ./run.sh "$WP_FOLDER/run.sh"
 COPY ./wait_for_mysql.py "$WP_FOLDER/wait_for_mysql.py"
 
+RUN chmod -R 0777 "$WP_FOLDER"
+
 # == INSTALLING COMPOSER ==
 # https://getcomposer.org/download/
 # Composer is a package manager for the PHP programming language. The held worpress plugin relies on composer to
