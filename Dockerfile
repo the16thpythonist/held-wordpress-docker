@@ -73,7 +73,7 @@ RUN cd "$WP_PLUGINS_FOLDER/helmholtz-plugin" && \
 RUN rm -r $WP_PLUGINS_FOLDER/akismet && \
     rm "$WP_PLUGINS_FOLDER/hello.php"
 
-
+EXPOSE 8080
 
 # ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 # IMPORTANT NOTE:
@@ -82,8 +82,3 @@ RUN rm -r $WP_PLUGINS_FOLDER/akismet && \
 # "404 Forbidden" when attempting to access. I dont know why though...
 #CMD ["apache2-foreground"]
 CMD bash -c "$WP_FOLDER/run.sh"
-#CMD bash -c "python3 $WP_FOLDER/wait_for_mysql.py && \
-#             $WPCLI_COMMAND core install --url=0.0.0.0 --title=HeldTest --admin_user=Jonas --admin_password=Jonas --admin_email=jonseb1998@gmail.com && \
-#             $WPCLI_COMMAND plugin activate helmholtz-plugin && \
-#             $WPCLI_COMMAND theme activate helmholtz-theme && \
-#             apache2-foreground"
