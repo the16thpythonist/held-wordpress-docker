@@ -19,7 +19,12 @@ ENV WP_THEMES_FOLDER="$WP_FOLDER/wp-content/themes"
 RUN cat "$WP_FOLDER/wp-config-docker.php"
 RUN cp "$WP_FOLDER/wp-config-docker.php" "$WP_FOLDER/wp-config.php"
 
-COPY ./run.py "$WP_FOLDER/run.py"
+# Copy the custom apache configuration
+# This mainly includes the changing of port 80 to port 8080
+COPY ./apache2/ports.conf /etc/apache2/ports.conf
+#COPY ./apache2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+# Copy the custom files which are needed to operate this container
 COPY ./run.sh "$WP_FOLDER/run.sh"
 COPY ./wait_for_mysql.py "$WP_FOLDER/wait_for_mysql.py"
 
@@ -73,12 +78,13 @@ RUN cd "$WP_PLUGINS_FOLDER/helmholtz-plugin" && \
 RUN rm -r $WP_PLUGINS_FOLDER/akismet && \
     rm "$WP_PLUGINS_FOLDER/hello.php"
 
+# This is important to make the whole thing work with OpenShift: OpenShift does not
+# allow the usage of port 80! We have to use 8080 and internally OpenShift redirects external access to
+# port XXX towards the 8XXX range of the services...
 EXPOSE 8080
+RUN ls -a /etc/apache2 && \
+    ls -a /etc/apache2/sites-enabled && \
+    cat /etc/apache2/ports.conf && \
+    cat /etc/apache2/sites-enabled/000-default.conf
 
-# ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-# IMPORTANT NOTE:
-# After some playing around, I have found out, that it is actually crucial to provide the CMD in this format
-# (using the brackets) and not in shell format. When attempting to use the shell format, the server returns
-# "404 Forbidden" when attempting to access. I dont know why though...
-#CMD ["apache2-foreground"]
 CMD bash -c "$WP_FOLDER/run.sh"

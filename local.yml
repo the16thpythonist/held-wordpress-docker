@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
+      - "8080:8080"
     restart: always
     environment:
       WORDPRESS_DB_HOST: mysql:3306
@@ -31,6 +31,7 @@ services:
       WORDPRESS_ADMIN_PASSWORD: admin
       WORDPRESS_ADMIN_EMAIL: "jonseb1998@gmail.com"
       WORDPRESS_TITLE: "Helmholtz Detectors"
+      WORDPRESS_DOMAIN: "0.0.0.0:8080"
 volumes:
   db:
   wp:

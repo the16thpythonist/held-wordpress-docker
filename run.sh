@@ -9,7 +9,7 @@ python3 "$WP_FOLDER/wait_for_mysql.py"
 
 if ! $($WPCLI core is-installed) ; then
   echo "== INSTALLING WORDPRESS =="
-  $WPCLI_COMMAND core install --url="0.0.0.0:8000" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER" --admin_password="$WORDPRESS_ADMIN_PASSWORD" --admin_email="$WORDPRESS_ADMIN_EMAIL"
+  $WPCLI_COMMAND core install --url="$WORDPRESS_DOMAIN" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER" --admin_password="$WORDPRESS_ADMIN_PASSWORD" --admin_email="$WORDPRESS_ADMIN_EMAIL"
 
   echo "== ACTIVATING PLUGINS =="
   $WPCLI plugin activate helmholtz-plugin
