@@ -22,7 +22,7 @@ RUN cp "$WP_FOLDER/wp-config-docker.php" "$WP_FOLDER/wp-config.php"
 # Copy the custom apache configuration
 # This mainly includes the changing of port 80 to port 8080
 COPY ./apache2/ports.conf /etc/apache2/ports.conf
-#COPY ./apache2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ./apache2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Copy the custom files which are needed to operate this container
 COPY ./run.sh "$WP_FOLDER/run.sh"
