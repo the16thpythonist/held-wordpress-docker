@@ -17,16 +17,18 @@ config = {
 def db_ready(host, user, password, dbname):
     while time.time() - start_time < TIMEOUT:
         try:
+            print(host)
+            host, port = host.split(':')
             connection = pymysql.connect(host=host,
                                          user=user,
                                          password=password,
                                          database=dbname,
-                                         cursorclass=pymysql.cursors.DictCursor)
-
-            print("DB is ready!")
-            return True
-        except pymysql.err.OperationalError:
-            pass
+                                         port=port)
+            with connection:
+                print("DB is ready!")
+                return True
+        except pymysql.err.OperationalError as e:
+            print(str(e))
         except Exception as e:
             print(type(e))
             print(str(e))

@@ -1,21 +1,36 @@
 #!/bin/bash
 set -e
 
-export WPCLI="php $WPCLI_PATH --allow-root --path=$WP_FOLDER"
+export PATH="$PATH:/usr/local/mysql/bin"
 export WP_FOLDER="/usr/src/wordpress"
-export WPCLI="php /home/util/wp-cli.phar --allow-root --path=$WP_FOLDER"
+export WP_INSTALLED="$WP_FOLDER/.installed"
+export WPCLI_COMMAND="php /home/util/wp-cli.phar --allow-root --path=$WP_FOLDER"
 
 python3 "$WP_FOLDER/wait_for_mysql.py"
 
-if ! $($WPCLI core is-installed) ; then
+echo "== TESTING FOR WORDPRESS INSTALLATION =="
+
+if ! test -f $WP_INSTALLED ; then
   echo "== INSTALLING WORDPRESS =="
   $WPCLI_COMMAND core install --url="$WORDPRESS_DOMAIN" --title="$WORDPRESS_TITLE" --admin_user="$WORDPRESS_ADMIN_USER" --admin_password="$WORDPRESS_ADMIN_PASSWORD" --admin_email="$WORDPRESS_ADMIN_EMAIL"
 
+  echo "== MIGRATING THE BACKUP =="
+  unzip "$WP_FOLDER/uploads.zip" -d "$WP_FOLDER/wp-content"
+
+  $WPCLI_COMMAND --quiet db import  "$WP_FOLDER/wordpress.sql"
+  $WPCLI_COMMAND core update-db
+
+  $WPCLI_COMMAND search-replace "http://localhost/tmp/ufo" "http://$WORDPRESS_DOMAIN"
+
   echo "== ACTIVATING PLUGINS =="
-  $WPCLI plugin activate helmholtz-plugin
+  $WPCLI_COMMAND plugin activate venture-lite-companion widget-logic svg-support duplicator helmholtz-plugin
+  $WPCLI_COMMAND plugin update --all
 
   echo "== ACTIVATING THEMES =="
-  $WPCLI theme activate helmholtz-theme
+  $WPCLI_COMMAND theme activate helmholtz-theme
+
+  echo "true" > $WP_INSTALLED
+  test -f $WP_INSTALLED
 fi
 
 
@@ -88,5 +103,6 @@ if [ ! -s wp-config.php ] && [ "${#wpEnvs[@]}" -gt 0 ]; then
   done
 fi
 
+# ls -a "/var/www/html/wp-content/uploads"
 echo "== STARTING APACHE SERVER =="
 apache2-foreground

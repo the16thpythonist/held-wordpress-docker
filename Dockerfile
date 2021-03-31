@@ -1,9 +1,25 @@
 FROM wordpress:latest
+
 MAINTAINER Jonas Teufel <jonseb1998@gmail.com>
 
+#RUN apt-get update && \
+#    apt-get install -y wget && \
+#    apt-get install -y lsb-release && \
+#    apt-get install -y gnupg && \
+#    wget "http://repo.mysql.com/mysql-apt-config_0.8.10-1_all.deb" && \
+#    dpkg -i "mysql-apt-config_0.8.10-1_all.deb"
+
+COPY ./mysql-signature /tmp/mysql-signature
+
 RUN apt-get update && \
+    apt-get install -y gnupg && \
+    apt-key add /tmp/mysql-signature && \
+    echo "deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-8.0" > /etc/apt/sources.list.d/mysql.list && \
+    apt-get update && \
     apt-get install -y git && \
     apt-get install -y curl && \
+    apt-get install -y unzip && \
+    apt-get install -y mysql-community-client &&\
     apt-get install -y python3-pip
 
 RUN python3 -m pip install pymysql
@@ -27,6 +43,9 @@ COPY ./apache2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 # Copy the custom files which are needed to operate this container
 COPY ./run.sh "$WP_FOLDER/run.sh"
 COPY ./wait_for_mysql.py "$WP_FOLDER/wait_for_mysql.py"
+# The backup of the sites state.
+COPY ./wordpress.sql "$WP_FOLDER/wordpress.sql"
+COPY ./uploads.zip "$WP_FOLDER/uploads.zip"
 
 RUN chmod -R 0777 "$WP_FOLDER"
 
