@@ -15,15 +15,14 @@ config = {
 }
 
 def db_ready(host, user, password, dbname):
+    host, port = host.split(':')
     while time.time() - start_time < TIMEOUT:
         try:
-            print(host)
-            host, port = host.split(':')
             connection = pymysql.connect(host=host,
                                          user=user,
                                          password=password,
                                          database=dbname,
-                                         port=port)
+                                         port=int(port))
             with connection:
                 print("DB is ready!")
                 return True
