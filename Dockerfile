@@ -44,12 +44,6 @@ ENV WP_THEMES_FOLDER="$WP_FOLDER/wp-content/themes"
 # name is not recognized by wp, so we have to rename it.
 RUN cp "$WP_FOLDER/wp-config-docker.php" "$WP_FOLDER/wp-config.php"
 
-# This right here is a workaround for the major annoynace of OpenShift. OpenShift uses an arbitrary user ID for the
-# execution of each container. As such you would have to invest a lot of pain and effort to make sure that all
-# folders would permit this kind of arbitrary user. The workaround is to just permit everyone to edit this folder and
-# its contents. This is bad security practice, but it is what it is.
-RUN chmod -R 0777 "$WP_FOLDER"
-
 # === (2) COPY CUSTOM FILES INTO THE CONTAINER ===
 # Copy the custom apache configuration
 # This mainly includes the changing of port 80 to port 8080
@@ -125,5 +119,11 @@ RUN rm -r $WP_PLUGINS_FOLDER/akismet && \
 # allow the usage of port 80! We have to use 8080 and internally OpenShift redirects external access to
 # port XXX towards the 8XXX range of the services...
 EXPOSE 8080
+
+# This right here is a workaround for the major annoynace of OpenShift. OpenShift uses an arbitrary user ID for the
+# execution of each container. As such you would have to invest a lot of pain and effort to make sure that all
+# folders would permit this kind of arbitrary user. The workaround is to just permit everyone to edit this folder and
+# its contents. This is bad security practice, but it is what it is.
+RUN chmod -R 0777 "$WP_FOLDER"
 
 CMD bash -c "$WP_FOLDER/run.sh"
